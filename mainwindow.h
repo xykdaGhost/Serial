@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "Uart/Uart.h"
 #include <QThread>
+#include "Camera/GenCamera.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,8 @@ public:
 private:
     Ui::MainWindow *ui;
     Uart * myUart;
+    GenCamera * camera;
+    int i;
 };
 
 #endif // MAINWINDOW_H

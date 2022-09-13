@@ -27,11 +27,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    Uart/Uart.cpp
+    Uart/Uart.cpp \
+    Camera/GenCamera.cpp \
+    Camera/WriteImageThread.cpp \
+    AutoExpo/AutoExpo.cpp \
+    Uart/UartRequest.cpp
 
 HEADERS += \
         mainwindow.h \
-    Uart/Uart.h
+    Uart/Uart.h \
+    Camera/GenCamera.h \
+    Camera/WriteImageThread.h \
+    AutoExpo/AutoExpo.h \
+    Uart/UartRequest.h
 
 FORMS += \
         mainwindow.ui
+
+unix:!macx: LIBS += -L$$PWD/../../../../../../opt/pylon/lib/ -lpylonbase
+unix:!macx: LIBS += -L$$/opt/pylon/lib/ -lgxapi
+unix:!macx: LIBS += -L$$/opt/pylon/lib/ -lGCBase_gcc_v3_1_Basler_pylon
+unix:!macx: LIBS += -L$$/opt/pylon/lib/ -lGenApi_gcc_v3_1_Basler_pylon
+
+INCLUDEPATH += $$PWD/../../../../../../opt/pylon/include
+DEPENDPATH += $$PWD/../../../../../../opt/pylon/include
+
+unix:!macx: LIBS += -L$$/usr/local/lib/ -lopencv_core
+unix:!macx: LIBS += -L$$/usr/local/lib/ -lopencv_photo
+unix:!macx: LIBS += -L$$/usr/local/lib/ -lopencv_imgproc
+unix:!macx: LIBS += -L$$/usr/local/lib/ -lopencv_imgcodecs
+
+
+INCLUDEPATH += $$/usr/local/include/opencv4/
+DEPENDPATH += $$/usr/local/include/opencv4/
